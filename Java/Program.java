@@ -18,14 +18,18 @@ public class Program {
         queue.add(toy2);
         queue.add(toy3);
 
-
         try (FileWriter writer = new FileWriter("Java/randomToy.txt")) {
-            for (int index = 0; index < 10; index++) {
-                PriorityQueue<Toy> randomQueue = queue;
-                String text = String.format("id: %d, weight: %d, name: %s", randomQueue.peek().getId(),
-                randomQueue.peek().getWeight(),
-                randomQueue.peek().getName());
-                writer.write(text);
+
+            for (int i = 0; i < 10; i++) {
+                PriorityQueue<Toy> randomQueue = new PriorityQueue<>(queue);
+                for (int index = 0; index < queue.size(); index++) {
+                    Toy randomToy = randomQueue.poll();
+                    String text = String.format("id: %d, weight: %d, name: %s", randomToy.getId(),
+                            randomToy.getWeight(),
+                            randomToy.getName());
+                    writer.write(text);
+                    writer.append('\n');
+                }
                 writer.append('\n');
             }
         } catch (IOException ex) {
