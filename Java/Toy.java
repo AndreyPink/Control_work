@@ -1,39 +1,25 @@
 package Java;
 
-public class Toy implements Comparable<Toy> {
-    private int id;
-    private int weight;
-    private String name;
+public class Toy {
+    private final String id;
+    private final String name;
+    private final int probability;
 
-    
-
-    public Toy(int id, int weight, String name) {
+    public Toy(String id, String name, int probability) {
         this.id = id;
         this.name = name;
-        this.weight = weight;
+        this.probability = probability;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
-    }
-
-    public int getWeight() {
-        return weight;
     }
 
     public String getName() {
         return name;
     }
 
-    @Override
-    public int compareTo(Toy other) {
-        if (other == null) {
-            return -1;
-        }
-        int delta = this.weight - other.weight;
-        if (delta != 0) {
-            return - delta;
-        }  
-        return this.name.compareTo(other.name);
+    public int getProbability() {
+        return probability;
     }
 }
